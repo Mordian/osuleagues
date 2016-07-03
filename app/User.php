@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class User extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,15 +12,27 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'user_id',
+        'username', 
+        'count300',
+        'count100',
+        'count50',
+        'playcount',
+        'ranked_score',
+        'total_score',
+        'pp_rank',
+        'level',
+        'pp_raw',
+        'accuracy',
+        'count_rank_ss',
+        'count_rank_s',
+        'count_rank_a',
+        'country',
+        'pp_country_rank'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    public function score()
+    {
+        return $this->hasMany(Score::class, 'user_id', 'user_id');
+    }
 }
