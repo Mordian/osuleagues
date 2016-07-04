@@ -14,6 +14,6 @@
 	@include('shared.header')
 
 	@yield('content')
-	
+
 </body>
 </html>

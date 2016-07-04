@@ -23,7 +23,7 @@ class LeagueController extends Controller
     {
     	$league = League::where(['name' => $league, 'mode' => $mode])->first();
 
-    	$users = User::where('mode', $mode)->whereBetween('pp_raw', [$league->minpp, $league->maxpp])->get();
+    	$users = User::where('mode', $mode)->whereBetween('pp_raw', [$league->minpp, $league->maxpp])->orderBy('pp_raw', 'desc')->get();
 
     	$user_ids = array();
     	foreach($users as $user)

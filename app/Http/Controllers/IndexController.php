@@ -21,10 +21,15 @@ class IndexController extends Controller
 
     public function placement(Request $request)
     {
+        $messages = [
+            'required' => 'Baka',
+            'numeric' => 'Dude please...',
+        ];
+
         $this->validate($request, [
             'username' => 'required',
             'mode' => 'required|numeric'
-        ]);
+        ], $messages);
 
 
         $user = User::where([

@@ -25,9 +25,10 @@
 							<th>SS / S / S</th>
 							<th>Global rank</th>
 						</tr>
+						<?php $rank = 1 ?>
 						@foreach ($users as $user)
-							<tr class="@if ($user->username == $requestedUser) hover @endif">
-								<td>1</td>
+							<tr class="@if ($user->canonical_username == $requestedUser) hover @endif">
+								<td>{{ $rank }}</td>
 								<td>
 									<img class="flag" src="/assets/flags/{{ strtolower($user->country) }}.png" alt="{{ $user->country }}">
 									<a target="_blank" href="https://osu.ppy.sh/u/{{ $user->user_id }}">{{ $user->username }}</a>
@@ -38,6 +39,7 @@
 								<td>{{ $user->count_rank_ss }} / {{ $user->count_rank_s }} / {{ $user->count_rank_a }}</td>
 								<td>{{ $user->pp_rank }}</td>
 							</tr>
+							<?php $rank++ ?>
 						@endforeach
 					</table>
 				</div>
