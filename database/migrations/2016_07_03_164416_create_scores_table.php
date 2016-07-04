@@ -16,6 +16,7 @@ class CreateScoresTable extends Migration
             $table->increments('id');
             $table->integer('beatmap_id')->index();
             $table->integer('enabled_mods');
+            $table->integer('mode');
             $table->integer('user_id')->index();
             $table->string('rank');
             $table->float('pp');

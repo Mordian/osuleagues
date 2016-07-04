@@ -12,3 +12,6 @@
 */
 
 Route::get('/', 'IndexController@index');
+Route::POST('/placement', 'IndexController@placement');
+
+Route::get('/leagues/{league}/{mode?}/{username?}', 'LeagueController@show');

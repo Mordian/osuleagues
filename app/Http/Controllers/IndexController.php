@@ -9,39 +9,53 @@ use Arielhr\Osuapi;
 use App\User;
 use App\Score;
 use App\Beatmap;
+use App\League;
 
 class IndexController extends Controller
 {
     public function index()
     {
-    	$osu = new Osuapi(env('OSU_API_KEY'));
-
-    	// $osu_user = $osu->get_user(['u' => 'arihosu']);
-    	// $osu_user = (array) $osu_user[0];
+        return view('modules.index');
     	
-    	// $user = new User();
-    	// $user->fill($osu_user);
-    	// $user->canonical_username = strtolower($osu_user['username']);
-    	// $user->save();
+    }
 
-    	// return $user;
+    public function placement(Request $request)
+    {
+        $this->validate($request, [
+            'username' => 'required',
+            'mode' => 'required|numeric'
+        ]);
 
-    	// $api_users_best = $osu->get_user_best(['u' => 'arihosu', 'limit' => 3]);
 
+        $user = User::where([
+            'canonical_username' => strtolower($request->username),
+            'mode' => $request->mode])
+            ->first();
 
-    	// foreach ($api_users_best as $user_best)
-    	// {
-    	// 	$user_best = (array) $user_best;
+        if (!$user)
+        {
+            // Instantiate and look for the user
+            $osu = new Osuapi(env('OSU_API_KEY'));
+            $osu_user = $osu->get_user(['u' => $request->username, 'm' => $request->mode]);
 
-    	// 	$best = new Score($user_best);
-    	// 	$best->save();
-    	// }
+            if (!$osu_user)
+            {
+                abort(404, "Can't find \"" . $request->username . "\" in osu! API.");
+            }
 
-    	// $api_beatmap = $osu->get_beatmaps(['b' => 556040]);
+            // Assign the api response to our User model
+            $osu_user = (array) $osu_user[0];
+            
+            $user = new User();
+            $user->fill($osu_user);
+            $user->mode = $request->mode;
+            $user->canonical_username = strtolower($osu_user['username']);
+            $user->save();
 
-    	// $beatmap = new Beatmap((array) $api_beatmap[0]);
-    	// $beatmap->save();
+            $user->getScores($osu);
+        }
 
-    	return User::with('score.beatmap')->get();
+        $league = $user->getLeague();
+        return redirect('leagues/'.$league->name.'/'.$request->mode.'/'.$user->canonical_username);
     }
 }

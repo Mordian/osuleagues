@@ -1,0 +1,39 @@
+body {
+	background: #fafafa;
+	font-family: 'Lato';
+}
+
+.site-color {
+	color: #E954B9;
+}
+
+.site-background {
+	background: #E954B9;	
+	color: #fafafa;
+}
+
+.btn-site {
+	background: #E954B9;	
+	color: #fafafa;
+}
+
+.btn-site:hover {
+	color: #F6B5AD;
+}
+
+.margin-top {
+	margin-top: 25px;
+}
+
+.flag {
+	margin-right: 10px;
+}
+
+.site-link:hover {
+	color: #E954B9;
+	text-decoration: none;
+}
+
+.hover {
+	background: #F3C9E6;
+}
