@@ -52,6 +52,6 @@ class Kernel extends ConsoleKernel
             }
 
             Log::info('Finished CRON job');
-        });
+        })->hourly();
     }
 }
