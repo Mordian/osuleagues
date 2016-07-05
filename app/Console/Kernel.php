@@ -4,6 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\User;
+use Log;
 
 class Kernel extends ConsoleKernel
 {
@@ -26,5 +28,27 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+
+        $schedule->call(function() {
+            Log::info('Executing the CRON job');
+            $users = User::get();
+
+            foreach ($users as $user)
+            {
+                $oldPp = $user->pp_raw;
+
+                $user->findInApi($user->username, $user->mode);
+
+                // If PP is the same then we can skip looking for new scores
+                if ($oldPp == $user->pp_raw)
+                {
+                    $user->update();
+                    break;
+                } else {
+                    $user->update();
+                    $user->getScores();
+                }
+            }
+        });
     }
 }

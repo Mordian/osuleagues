@@ -4,7 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\League;
+use App\Score;
 use Arielhr\Osuapi;
+use Log;
 
 class User extends Model
 {
@@ -33,6 +35,15 @@ class User extends Model
         'pp_country_rank'
     ];
 
+    private $osu;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->osu = new Osuapi(env('OSU_API_KEY'));
+    }
+
     public function score()
     {
         return $this->hasMany(Score::class, 'user_id', 'user_id');
@@ -43,29 +54,75 @@ class User extends Model
         return League::where('maxpp', '>=', $this->pp_raw)->first();
     }
 
-    public function getScores($osu)
+    public function findInApi($username, $mode)
+    {
+        // if (!$username)
+        // {
+        //     $username = $this->username;
+        // }
+
+        // if (!$mode)
+        // {
+        //     $mode = $this->mode;
+        // }
+
+        Log::info('Made API request for user ' . $username);
+        $osu_user = $this->osu->get_user(['u' => $username, 'm' => $mode]);
+
+        if (!$osu_user)
+        {
+            abort(404, "Can't find \"" . $username . "\" in osu! API.");
+        }
+        
+        $this->fill( (array) $osu_user[0]);
+        $this->mode = $mode;
+        $this->canonical_username = strtolower($username);
+    }
+
+    public function getScores()
     {
         // Get the user best scores
-        $api_users_best = $osu->get_user_best([
+        Log::info('Made API request for scores');
+        $api_users_best = $this->osu->get_user_best([
             'u' => $this->username, 
             'm' => $this->mode, 
             'limit' => 3]);
 
         foreach ($api_users_best as $user_best)
         {
-            $user_best_array = (array) $user_best;
+            // Check if this score exists
+            $score = Score::where([
+                'beatmap_id' => $user_best->beatmap_id,
+                'user_id' => $user_best->user_id,
+                'mode' => $this->mode,
+            ])->first();
 
-            $best = new Score($user_best_array);
-            $best->mode = $this->mode;
-            $best->save();
+            if ($score)
+            {
+                // If the score exist but PP's changed, then update
+                if ($score->pp != number_format($user_best->pp, 2))
+                {
+                    Log::info('Found an existing score with different PP, updating score '.$score->pp.' to '.$user_best->pp);
+                    $score->fill( (array) $user_best);
+                    $score->update();
+                }
+            } 
+            else 
+            {
+                $score = new Score( (array) $user_best);
+                $score->mode = $this->mode;
+                $score->save();
+            }
             
+            // Check if beatmap exists
             $beatmap = Beatmap::where('beatmap_id', $user_best->beatmap_id)->first();
 
             if (!$beatmap)
             {
-                $api_beatmap = $osu->get_beatmaps(['b' => $user_best->beatmap_id]);
+                Log::info('Made API request for one beatmap');
+                $api_beatmap = $this->osu->get_beatmaps(['b' => $user_best->beatmap_id]);
 
-                $beatmap = new Beatmap((array) $api_beatmap[0]);
+                $beatmap = new Beatmap( (array) $api_beatmap[0]);
                 $beatmap->save();
             }
             else

@@ -31,7 +31,6 @@ class IndexController extends Controller
             'mode' => 'required|numeric'
         ], $messages);
 
-
         $user = User::where([
             'canonical_username' => strtolower($request->username),
             'mode' => $request->mode])
@@ -39,25 +38,10 @@ class IndexController extends Controller
 
         if (!$user)
         {
-            // Instantiate and look for the user
-            $osu = new Osuapi(env('OSU_API_KEY'));
-            $osu_user = $osu->get_user(['u' => $request->username, 'm' => $request->mode]);
-
-            if (!$osu_user)
-            {
-                abort(404, "Can't find \"" . $request->username . "\" in osu! API.");
-            }
-
-            // Assign the api response to our User model
-            $osu_user = (array) $osu_user[0];
-            
             $user = new User();
-            $user->fill($osu_user);
-            $user->mode = $request->mode;
-            $user->canonical_username = strtolower($osu_user['username']);
+            $user->findInApi($request->username, $request->mode);
             $user->save();
-
-            $user->getScores($osu);
+            $user->getScores();
         }
 
         $league = $user->getLeague();
