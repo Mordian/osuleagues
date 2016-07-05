@@ -18,6 +18,7 @@ function modeToInt($mode)
 		'standard' => 0,
 		'taiko' => 1,
 		'ctb' => 2,
+		'catch the Beat' => 2, // ayy lmao
 		'mania' => 3
 	];
 

@@ -15,8 +15,10 @@ class IndexController extends Controller
 {
     public function index()
     {
-        return view('modules.index');
-    	
+        $leagues = League::get();
+        return view('modules.index', [
+            'leagues' => $leagues
+        ]);
     }
 
     public function placement(Request $request)

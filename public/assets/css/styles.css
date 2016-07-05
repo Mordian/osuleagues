@@ -7,6 +7,7 @@ body {
 	color: #E954B9;
 }
 
+
 .site-background {
 	background: #E954B9;	
 	color: #fafafa;
@@ -36,4 +37,8 @@ body {
 
 .hover {
 	background: #F3C9E6;
+}
+
+.site-decoration:hover {
+	text-decoration: underline;
 }

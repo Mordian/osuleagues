@@ -54,7 +54,7 @@ class LeaguesTableSeeder extends Seeder
 
             DB::table('leagues')->insert([
                 'name'      => 'bronze',
-                'slug'      => 'TBD',
+                'slug'      => 'I bet my friends would be impressed',
                 'division'  => 2,
                 'mode'      => $i,
                 'minpp'     => 750,
@@ -63,7 +63,7 @@ class LeaguesTableSeeder extends Seeder
 
             DB::table('leagues')->insert([
                 'name'      => 'bronze',
-                'slug'      => 'TBD',
+                'slug'      => "I can't progress without a tablet",
                 'division'  => 1,
                 'mode'      => $i,
                 'minpp'     => 1200,
@@ -73,7 +73,7 @@ class LeaguesTableSeeder extends Seeder
             // Silver Leagues
             DB::table('leagues')->insert([
                 'name'      => 'silver',
-                'slug'      => 'TBD',
+                'slug'      => 'Getting to know the fun',
                 'division'  => 3,
                 'mode'      => $i,
                 'minpp'     => 1500,
@@ -85,13 +85,13 @@ class LeaguesTableSeeder extends Seeder
                 'slug'      => 'TBD',
                 'division'  => 2,
                 'mode'      => $i,
-                'minpp'     => 1500,
+                'minpp'     => 2000,
                 'maxpp'     => 2400
             ]);
 
             DB::table('leagues')->insert([
                 'name'      => 'silver',
-                'slug'      => 'TBD',
+                'slug'      => 'Getting to know the pain',
                 'division'  => 1,
                 'mode'      => $i,
                 'minpp'     => 2400,
@@ -101,7 +101,7 @@ class LeaguesTableSeeder extends Seeder
             // Gold Leagues
             DB::table('leagues')->insert([
                 'name'      => 'gold',
-                'slug'      => 'tbd gold 3',
+                'slug'      => 'Improve a score, lose 100 ranks',
                 'division'  => 3,
                 'mode'      => $i,
                 'minpp'     => 2800,
@@ -110,7 +110,7 @@ class LeaguesTableSeeder extends Seeder
 
             DB::table('leagues')->insert([
                 'name'      => 'gold',
-                'slug'      => 'TBD 2',
+                'slug'      => 'Practice more',
                 'division'  => 2,
                 'mode'      => $i,
                 'minpp'     => 3200,
@@ -119,11 +119,49 @@ class LeaguesTableSeeder extends Seeder
 
             DB::table('leagues')->insert([
                 'name'      => 'gold',
-                'slug'      => 'TBD 1',
+                'slug'      => "rrtyui's game enjoyers",
                 'division'  => 1,
                 'mode'      => $i,
                 'minpp'     => 3600,
                 'maxpp'     => 4000
+            ]);
+
+            // Platinum leagues
+            DB::table('leagues')->insert([
+                'name'      => 'platinum,',
+                'slug'      => "rrtyui's game enjoyers",
+                'division'  => 3,
+                'mode'      => $i,
+                'minpp'     => 4000,
+                'maxpp'     => 4500
+            ]);
+
+            DB::table('leagues')->insert([
+                'name'      => 'platinum,',
+                'slug'      => "rrtyui's game enjoyers",
+                'division'  => 3,
+                'mode'      => $i,
+                'minpp'     => 4500,
+                'maxpp'     => 5000
+            ]);
+
+            DB::table('leagues')->insert([
+                'name'      => 'platinum,',
+                'slug'      => "rrtyui's game enjoyers",
+                'division'  => 3,
+                'mode'      => $i,
+                'minpp'     => 5000,
+                'maxpp'     => 5500
+            ]);
+
+            // EOL
+            DB::table('leagues')->insert([
+                'name'      => 'Major',
+                'slug'      => "People at this level wouldn't use this",
+                'division'  => 1,
+                'mode'      => $i,
+                'minpp'     => 5500,
+                'maxpp'     => 99999
             ]);
         }
     }

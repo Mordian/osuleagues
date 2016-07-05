@@ -15,5 +15,9 @@
 
 	@yield('content')
 
+	@include('shared.footer')
+	
+	<script src="/assets/js/scripts.js" type='text/javascript'></script>
+	<script src="https://code.jquery.com/jquery-3.0.0.min.js" type='text/javascript'></script>
 </body>
 </html>

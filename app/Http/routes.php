@@ -15,3 +15,9 @@ Route::get('/', 'IndexController@index');
 Route::POST('/placement', 'IndexController@placement');
 
 Route::get('/leagues/{league}/{division?}/{mode?}/{username?}', 'LeagueController@show');
+
+Route::get('/api/leagues/{mode}', function($mode) {
+	$leagues = App\League::where('mode', $mode)->get();
+
+	return view('apihtml.leagues', ['leagues' => $leagues]);
+});
