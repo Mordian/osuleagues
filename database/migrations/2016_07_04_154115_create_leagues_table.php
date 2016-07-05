@@ -16,6 +16,7 @@ class CreateLeaguesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('slug');
+            $table->integer('division');
             $table->integer('mode');
             $table->integer('minpp');
             $table->integer('maxpp');

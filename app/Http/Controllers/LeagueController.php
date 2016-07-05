@@ -19,12 +19,15 @@ class LeagueController extends Controller
     	]);
     }
 
-    public function show($league, $mode = 0, $requestedUser = false)
+    public function show($league, $division = 1, $mode = 'Standard', $requestedUser = false)
     {
-    	$league = League::where(['name' => $league, 'mode' => $mode])->first();
+        $mode = modeToInt($mode);
+        
+    	$league = League::where(['name' => $league, 'division' => $division, 'mode' => $mode])->first();
 
     	$users = User::where('mode', $mode)->whereBetween('pp_raw', [$league->minpp, $league->maxpp])->orderBy('pp_raw', 'desc')->get();
 
+        // A true skilled programmer
     	$user_ids = array();
     	foreach($users as $user)
     	{
@@ -34,34 +37,11 @@ class LeagueController extends Controller
     	$scores = Score::with('beatmap')->where('mode', $mode)->whereIn('user_id', $user_ids)->orderBy('pp', 'desc')->take(10)->get();
 
     	return view('modules.league', [
-    		'mode' => $this->formatMode($mode),
+    		'mode' => formatMode($mode),
     		'league' => $league,
     		'users' => $users,
     		'scores' => $scores,
     		'requestedUser' => $requestedUser
     	]);
-    }
-
-    // "To add a function in Laravel you have to edit composer.json and..."
-    // Yeah no
-    private function formatMode($mode)
-    {
-    	switch ($mode) {
-    		case 0:
-    			return 'Standard';
-    			break;
-    		case 1:
-    			return 'Taiko';
-    			break;
-    		case 2:
-    			return 'Catch the Beat';
-    			break;
-    		case 3;
-    			return 'Mania';
-    			break;
-    		default:
-    			return 'Standard';
-    			break;
-    	}
     }
 }

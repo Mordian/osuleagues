@@ -30,25 +30,28 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
 
         $schedule->call(function() {
-            Log::info('Executing the CRON job');
+            Log::info('Executing CRON job');
             $users = User::get();
 
             foreach ($users as $user)
             {
-                $oldPp = $user->pp_raw;
+                $oldPp = round($user->pp_raw);
 
                 $user->findInApi($user->username, $user->mode);
 
                 // If PP is the same then we can skip looking for new scores
-                if ($oldPp == $user->pp_raw)
+                if ($oldPp == round($user->pp_raw))
                 {
                     $user->update();
-                    break;
+                    continue;
                 } else {
+                    Log::info("Different user PP " . $oldPp . ' - ' . $user->pp_raw);
                     $user->update();
                     $user->getScores();
                 }
             }
+
+            Log::info('Finished CRON job');
         });
     }
 }

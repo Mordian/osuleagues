@@ -8,12 +8,13 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<h2 class="site-color">
-						{{ $mode }} {{ ucfirst($league->name) }} League
+						{{ $mode }} {{ ucfirst($league->name) }} {{ formatRomans($league->division) }} League
 						<small>{{ $league->minpp }}-{{ $league->maxpp }}pp</small> 
-						<span class="pull-right"><a class="site-color site-link" href="#top-maps">Check the top maps for this legue</a></span>
 					</h2>
 
 					<h4><small>"{{ $league->slug }}"</small></h4>
+
+					<h3><a class="site-color site-link" href="#top-maps">Check the top maps for this legue</a></h3>
 
 					<table class="table table-condensed">
 						<tr class="site-background">
@@ -21,7 +22,8 @@
 							<th>Username</th>
 							<th>PP</th>
 							<th>Playcount</th>
-							<th>Level / Accuracy</th>
+							<th>Level</th>
+							<th>Accuracy</th>
 							<th>SS / S / S</th>
 							<th>Global rank</th>
 						</tr>
@@ -35,7 +37,8 @@
 								</td>
 								<td>{{ $user->pp_raw }}</td>
 								<td>{{ $user->playcount }}</td>
-								<td>{{ $user->level }} / {{ $user->accuracy }}%</td>
+								<td>{{ $user->level }}</td>
+								<td>{{ $user->accuracy }}%</td>
 								<td>{{ $user->count_rank_ss }} / {{ $user->count_rank_s }} / {{ $user->count_rank_a }}</td>
 								<td>{{ $user->pp_rank }}</td>
 							</tr>
@@ -61,7 +64,7 @@
 										<a href="https://osu.ppy.sh/b/{{ $score->beatmap->beatmap_id }}" target="_blank">{{ $score->beatmap->artist }} - {{ $score->beatmap->title }}</a>
 									</td>
 									<td>{{ $score->beatmap->difficultyrating }}</td>
-									<td>{{ $score->pp }}</td>
+									<td>{{ round($score->pp) }}</td>
 								</tr>
 							@endforeach
 						</table>

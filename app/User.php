@@ -51,21 +51,14 @@ class User extends Model
 
     public function getLeague()
     {
-        return League::where('maxpp', '>=', $this->pp_raw)->first();
+        return League::where('maxpp', '>', $this->pp_raw)
+            ->where('minpp', '<', $this->pp_raw)
+            ->where('mode', $this->mode)
+            ->first();
     }
 
     public function findInApi($username, $mode)
     {
-        // if (!$username)
-        // {
-        //     $username = $this->username;
-        // }
-
-        // if (!$mode)
-        // {
-        //     $mode = $this->mode;
-        // }
-
         Log::info('Made API request for user ' . $username);
         $osu_user = $this->osu->get_user(['u' => $username, 'm' => $mode]);
 
@@ -81,6 +74,7 @@ class User extends Model
 
     public function getScores()
     {
+        // Can't decouple this
         // Get the user best scores
         Log::info('Made API request for scores');
         $api_users_best = $this->osu->get_user_best([

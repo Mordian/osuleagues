@@ -45,6 +45,9 @@ class IndexController extends Controller
         }
 
         $league = $user->getLeague();
-        return redirect('leagues/'.$league->name.'/'.$request->mode.'/'.$user->canonical_username);
+        $mode = lcfirst(formatMode($request->mode));
+        return redirect(
+            'leagues/'.$league->name.'/'.$league->division.'/'.$mode.'/'.$user->canonical_username
+        );
     }
 }

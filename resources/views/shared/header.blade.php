@@ -13,9 +13,7 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<ul class="list-inline list-unstyled">
-					<li><h3>home</h3></li>
-					<li><h3>leagues</h3></li>
-					<li><h3>about</h3></li>
+					<li><h3>"make use of this bar soon &trade;"</h3></li>
 				</ul>
 			</div>
 		</div>
