@@ -38,7 +38,9 @@ class LeagueController extends Controller
     		$user_ids[] = $user->user_id;
     	}
 
-    	$scores = Score::with('beatmap')->where('mode', $mode)->whereIn('user_id', $user_ids)->orderBy('pp', 'desc')->take(10)->get();
+    	$scores = Score::with('user', 'beatmap')->where('mode', $mode)
+            ->whereIn('user_id', $user_ids)->orderBy('pp', 'desc')
+            ->take(10)->get();
 
     	return view('modules.league', [
     		'mode' => formatMode($mode),

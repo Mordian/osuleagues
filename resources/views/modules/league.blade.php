@@ -57,6 +57,7 @@
 								<th>Artist / Song</th>
 								<th>Stars</th>
 								<th style="min-width: 80px">PP given</th>
+								<th>Played by</th>
 							</tr>
 							@foreach ($scores as $score)
 								<tr>
@@ -65,6 +66,7 @@
 									</td>
 									<td>{{ $score->beatmap->difficultyrating }}</td>
 									<td>{{ round($score->pp) }}</td>
+									<td>{{ $score->user->username }}</td>
 								</tr>
 							@endforeach
 						</table>
