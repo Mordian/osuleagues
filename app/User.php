@@ -41,7 +41,7 @@ class User extends Model
     {
         parent::__construct();
 
-        $this->osu = new Osuapi(env('OSU_API_KEY'));
+        $this->osu = app('Osu');
     }
 
     public function score()
@@ -52,7 +52,7 @@ class User extends Model
     public function getLeague()
     {
         return League::where('maxpp', '>', $this->pp_raw)
-            ->where('minpp', '<', $this->pp_raw)
+            ->where('minpp', '<=', $this->pp_raw)
             ->where('mode', $this->mode)
             ->first();
     }
