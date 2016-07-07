@@ -82,7 +82,7 @@ class LeaguesTableSeeder extends Seeder
 
             DB::table('leagues')->insert([
                 'name'      => 'silver',
-                'slug'      => 'TBD',
+                'slug'      => "It's this skin that makes me play bad",
                 'division'  => 2,
                 'mode'      => $i,
                 'minpp'     => 2000,
@@ -119,7 +119,7 @@ class LeaguesTableSeeder extends Seeder
 
             DB::table('leagues')->insert([
                 'name'      => 'gold',
-                'slug'      => "rrtyui's game enjoyers",
+                'slug'      => "Being average never felt this scrub",
                 'division'  => 1,
                 'mode'      => $i,
                 'minpp'     => 3600,
@@ -128,8 +128,8 @@ class LeaguesTableSeeder extends Seeder
 
             // Platinum leagues
             DB::table('leagues')->insert([
-                'name'      => 'platinum,',
-                'slug'      => "rrtyui's game enjoyers",
+                'name'      => 'platinum',
+                'slug'      => "Being scrub never felt this average",
                 'division'  => 3,
                 'mode'      => $i,
                 'minpp'     => 4000,
@@ -137,30 +137,87 @@ class LeaguesTableSeeder extends Seeder
             ]);
 
             DB::table('leagues')->insert([
-                'name'      => 'platinum,',
-                'slug'      => "rrtyui's game enjoyers",
-                'division'  => 3,
+                'name'      => 'platinum',
+                'slug'      => "The more anime you watch the better you play",
+                'division'  => 2,
                 'mode'      => $i,
                 'minpp'     => 4500,
                 'maxpp'     => 5000
             ]);
 
             DB::table('leagues')->insert([
-                'name'      => 'platinum,',
-                'slug'      => "rrtyui's game enjoyers",
-                'division'  => 3,
+                'name'      => 'platinum',
+                'slug'      => "This is the real mark for average",
+                'division'  => 1,
                 'mode'      => $i,
                 'minpp'     => 5000,
                 'maxpp'     => 5500
             ]);
 
-            // EOL
+            // Master leagues
             DB::table('leagues')->insert([
-                'name'      => 'Major',
-                'slug'      => "People at this level wouldn't use this",
-                'division'  => 1,
+                'name'      => 'master',
+                'slug'      => "Finally a Shisho",
+                'division'  => 3,
                 'mode'      => $i,
                 'minpp'     => 5500,
+                'maxpp'     => 6000
+            ]);
+
+            DB::table('leagues')->insert([
+                'name'      => 'master',
+                'slug'      => "If you come up with something funny let me now",
+                'division'  => 2,
+                'mode'      => $i,
+                'minpp'     => 6000,
+                'maxpp'     => 6500
+            ]);
+
+
+            DB::table('leagues')->insert([
+                'name'      => 'master',
+                'slug'      => "I can actually pick up girls with these mad skills",
+                'division'  => 1,
+                'mode'      => $i,
+                'minpp'     => 6500,
+                'maxpp'     => 7000
+            ]);
+
+            // Challenger leagues
+            DB::table('leagues')->insert([
+                'name'      => 'challenger',
+                'slug'      => "Challanger what?",
+                'division'  => 3,
+                'mode'      => $i,
+                'minpp'     => 7000,
+                'maxpp'     => 7500
+            ]);
+
+            DB::table('leagues')->insert([
+                'name'      => 'challenger',
+                'slug'      => "Blue Dragon's old schoolers",
+                'division'  => 2,
+                'mode'      => $i,
+                'minpp'     => 7500,
+                'maxpp'     => 8000
+            ]);
+
+            DB::table('leagues')->insert([
+                'name'      => 'challenger',
+                'slug'      => "rrtyui's game enjoyers",
+                'division'  => 1,
+                'mode'      => $i,
+                'minpp'     => 8000,
+                'maxpp'     => 8500
+            ]);
+
+            // Major
+            DB::table('leagues')->insert([
+                'name'      => 'major',
+                'slug'      => "End of the line",
+                'division'  => 1,
+                'mode'      => $i,
+                'minpp'     => 8500,
                 'maxpp'     => 99999
             ]);
         }
