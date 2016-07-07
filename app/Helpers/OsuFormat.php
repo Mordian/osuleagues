@@ -18,11 +18,18 @@ function modeToInt($mode)
 		'standard' => 0,
 		'taiko' => 1,
 		'ctb' => 2,
-		'catch the Beat' => 2, // ayy lmao
+		'catch the Beat' => 2, // ayy lmao next level programming
 		'mania' => 3
 	];
 
-	return $modes[$mode];
+	if (isset($modes[$mode]))
+	{
+		return $modes[$mode];
+	}
+	else
+	{
+		return false;
+	}
 }
 
 function formatRomans($number)

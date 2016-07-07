@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>osuleagues | ayy lmao</title>
+        <title>osuleagues | he's gone</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet" type="text/css">
 
@@ -40,7 +40,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">404 ayy lmao</div>
+                <div class="title">He's gone, out of my life...</div>
                 <h2>{{ $exception->getMessage() }}</h2>
             </div>
         </div>

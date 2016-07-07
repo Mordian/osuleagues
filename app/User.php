@@ -64,10 +64,17 @@ class User extends Model
 
         if (!$osu_user)
         {
-            abort(404, "Can't find \"" . $username . "\" in osu! API.");
+            abort(404, "Can't find \"" . $username . "\" in osu! API. Did you type it right?");
+        }
+
+        $osu_user = (array) $osu_user[0];
+
+        if ($osu_user['pp_raw'] == 0 && $osu_user['level'] > 10)
+        {
+            abort(410, "It would seem that the user is inactive");
         }
         
-        $this->fill( (array) $osu_user[0]);
+        $this->fill($osu_user);
         $this->mode = $mode;
         $this->canonical_username = strtolower($username);
     }
