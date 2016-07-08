@@ -43,3 +43,34 @@ function formatRomans($number)
 
 	return $romans[$number];
 }
+
+function formatBitwise($input)
+{
+	$bitwise = [
+		'NF,' => 1,
+		'EZ,' => 2,
+		'HD,' => 8,
+		'HR,' => 16,
+		'SD,' => 32,
+		'DT,' => 64,
+		'HT,' => 256,
+		'FL,' => 1024,
+		'PF,' => 16384,
+		'4KEYS,' => 32768,
+		'5KEYS,' => 65536,
+		'6KEYS,' => 131072,
+		'7KEYS,' => 262144,
+	];
+
+	$output = '';
+
+	foreach ($bitwise as $key => $value)
+	{
+		if ($input & $value)
+		{
+			$output .= $key;
+		}
+	}
+
+	return trim($output, ',');
+}

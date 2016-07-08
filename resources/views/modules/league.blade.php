@@ -62,7 +62,10 @@
 							@foreach ($scores as $score)
 								<tr>
 									<td>
-										<a href="https://osu.ppy.sh/b/{{ $score->beatmap->beatmap_id }}" target="_blank">{{ $score->beatmap->artist }} - {{ $score->beatmap->title }}</a>
+										<a href="https://osu.ppy.sh/b/{{ $score->beatmap->beatmap_id }}" target="_blank">
+											{{ $score->beatmap->artist }} - {{ $score->beatmap->title }}
+										</a>
+										<strong>{{ formatBitwise($score->enabled_mods) }}</strong>
 									</td>
 									<td>{{ $score->beatmap->difficultyrating }}</td>
 									<td>{{ round($score->pp) }}</td>
