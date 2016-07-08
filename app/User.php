@@ -71,7 +71,7 @@ class User extends Model
 
         if ($osu_user['pp_raw'] == 0 && $osu_user['level'] > 10)
         {
-            abort(410, "It seems that that " . $username . " is inactive");
+            abort(410, "It seems that " . $username . " is inactive");
         }
         
         $this->fill($osu_user);

@@ -49,7 +49,7 @@
 			</div>
 
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-sm-8">
 					<div id="top-maps">
 						<h3 class="site-color">Top maps</h3>
 						<table class="table table-condensed">
