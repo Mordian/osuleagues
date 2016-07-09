@@ -52,7 +52,7 @@ class LeagueController extends Controller
             ->whereIn('user_id', $user_ids)
             ->orderBy('pp', 'desc')
             ->groupBy('beatmap_id')
-            ->take(10)
+            ->take(20)
             ->get();
 
     	return view('modules.league', [

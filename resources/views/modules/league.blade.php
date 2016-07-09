@@ -63,7 +63,7 @@
 
 				<div class="clearfix"></div>
 
-				<table class="table table-condensed margin-top">
+				<table class="table table-hover table-condensed margin-top">
 					<tr class="site-background">
 						<th>#</th>
 						<th>Username</th>
@@ -99,7 +99,7 @@
 			<div class="col-md-8 col-md-offset-2">
 				<div id="top-maps">
 					<h3 class="site-color">Top maps</h3>
-					<table class="table table-condensed">
+					<table class="table table-hover table-condensed">
 						<tr class="site-background">
 							<th>Artist / Song</th>
 							<th>Stars</th>
