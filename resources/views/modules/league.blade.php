@@ -6,14 +6,31 @@
 	<div class="container-fluid margin-top">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-12">
-					<h2 class="site-color">
-						{{ $mode }} {{ ucfirst($league->name) }} {{ formatRomans($league->division) }} League
-						<small>{{ $league->minpp }}-{{ $league->maxpp }}pp</small> 
-					</h2>
-
-					<h4><small>"{{ $league->slug }}"</small></h4>
-
+				<div class="col-sm-2">
+					<h3 class="site-color">
+						{{ $mode }}
+						<br>
+						{{ ucfirst($league->name) }} {{ formatRomans($league->division) }}
+						<br>
+						<small>
+							{{ $league->minpp }}-{{ $league->maxpp }}pp
+							<br>
+							"{{ $league->slug }}"
+						</small> 
+					</h3>
+					<hr class="site-border">
+					@if ($league->name != 'major')
+						<h4>Related leagues</h4>
+						
+						@for ($i = 1; $i < 4; $i++)
+							<a href="/leagues/{{ $league->name }}/{{ $i }}/{{ lcfirst($mode) }}" class="site-color site-link">
+								{{ ucfirst($league->name) }} {{ formatRomans($i) }}
+							</a>
+							<br>
+						@endfor
+					@endif
+				</div>
+				<div class="col-sm-10">
 					<h3><a class="site-color site-link" href="#top-maps">Check the top maps for this legue</a></h3>
 
 					<table class="table table-condensed">
@@ -49,7 +66,7 @@
 			</div>
 
 			<div class="row">
-				<div class="col-sm-8">
+				<div class="col-sm-8 col-sm-offset-2">
 					<div id="top-maps">
 						<h3 class="site-color">Top maps</h3>
 						<table class="table table-condensed">

@@ -7,7 +7,6 @@ body {
 	color: #E954B9;
 }
 
-
 .site-background {
 	background: #E954B9;	
 	color: #fafafa;
@@ -41,4 +40,8 @@ body {
 
 .site-decoration:hover {
 	text-decoration: underline;
+}
+
+.site-border {
+	border-color: #E954B9;
 }
