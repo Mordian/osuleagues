@@ -71,7 +71,7 @@
 						<th>Playcount</th>
 						<th>Level</th>
 						<th>Accuracy</th>
-						<th>SS / S / S</th>
+						<th>SS / S / A</th>
 						<th>Global rank</th>
 					</tr>
 					<?php $rank = 1 ?>
