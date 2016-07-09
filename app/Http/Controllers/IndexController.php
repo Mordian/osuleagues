@@ -38,7 +38,11 @@ class IndexController extends Controller
         if (!$user)
         {
             $user = new User();
-            $user->findInApi($request->username, $request->mode);
+            if (!$user->findInApi($request->username, $request->mode))
+            {
+                abort(404, "Can't find \"" . $request->username . "\" in osu! API. Did you type it right?");
+            }
+            
             $user->save();
             $user->getScores();
         }

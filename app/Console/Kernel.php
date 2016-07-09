@@ -37,7 +37,11 @@ class Kernel extends ConsoleKernel
             {
                 $oldPp = round($user->pp_raw);
 
-                $user->findInApi($user->username, $user->mode);
+                if (!$user->findInApi($user->username, $user->mode))
+                {
+                    $user->delete();
+                    continue;
+                }
 
                 // If PP is the same then we can skip looking for new scores
                 if ($oldPp == round($user->pp_raw))

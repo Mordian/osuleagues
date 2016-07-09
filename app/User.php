@@ -64,7 +64,8 @@ class User extends Model
 
         if (!$osu_user)
         {
-            abort(404, "Can't find \"" . $username . "\" in osu! API. Did you type it right?");
+            Log::debug('Couldnt find user?');
+            return false;
         }
 
         $osu_user = (array) $osu_user[0];
@@ -77,6 +78,8 @@ class User extends Model
         $this->fill($osu_user);
         $this->mode = $mode;
         $this->canonical_username = strtolower($username);
+
+        return $this;
     }
 
     public function getScores()
