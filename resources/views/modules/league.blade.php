@@ -38,7 +38,7 @@
 					<form class="form-inline" method="POST" action="/placement">
 						<div class="form-group">
 							{{ csrf_field() }}
-							<input type="text" name="username" class="form-control" placeholder="Search an user">
+							<input type="text" name="username" class="form-control" placeholder="Search a user">
 						</div>
 
 						<div class="form-group">
