@@ -31,7 +31,7 @@ body {
 
 .site-link:hover {
 	color: #E954B9;
-	text-decoration: none;
+	text-decoration: none !important;
 }
 
 .hover {
@@ -44,4 +44,24 @@ body {
 
 .site-border {
 	border-color: #E954B9;
+}
+
+.league-lookup {
+	min-width: 100px;
+}
+
+.mode-0 {
+	color: #C054E9;
+}
+
+.mode-1 {
+	color: #5486E9;
+}
+
+.mode-2 {
+	color: #E99954;
+}
+
+.mode-3 {
+	color: #E9546B;
 }
