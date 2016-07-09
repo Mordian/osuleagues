@@ -38,6 +38,14 @@ body {
 	background: #F3C9E6;
 }
 
+.table-hover tbody tr:hover td {
+	background: #F3C9E6;	
+}
+
+.table-hover tbody tr:hover th {
+	background: #E954B9;
+}
+
 .site-decoration:hover {
 	text-decoration: underline;
 }
