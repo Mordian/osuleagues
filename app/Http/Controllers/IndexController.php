@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Log;
 use App\Http\Requests;
 use App\User;
 use App\League;
@@ -45,6 +45,10 @@ class IndexController extends Controller
             
             $user->save();
             $user->getScores();
+        }
+        else
+        {
+            Log::info('Search for existing user ' . $request->username);
         }
 
         $league = $user->getLeague();

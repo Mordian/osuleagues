@@ -59,7 +59,7 @@ class User extends Model
 
     public function findInApi($username, $mode)
     {
-        Log::info('Made API request for user ' . $username);
+        Log::info('Made API request for user ' . $username . ' in mode ' . $mode);
         $osu_user = $this->osu->get_user(['u' => $username, 'm' => $mode]);
 
         if (!$osu_user)
