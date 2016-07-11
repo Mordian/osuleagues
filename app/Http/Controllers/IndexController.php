@@ -50,7 +50,7 @@ class IndexController extends Controller
         $league = $user->getLeague();
         $mode = lcfirst(formatMode($request->mode));
         return redirect(
-            'leagues/'.$league->name.'/'.$league->division.'/'.$mode.'/'.$user->canonical_username
+            'leagues/'.$league->name.'/'.$league->division.'/'.$mode.'/'.$user->canonical_username.'#'.$user->canonical_username
         );
     }
 }

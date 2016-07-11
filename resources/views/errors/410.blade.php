@@ -1,47 +1,29 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>osuleagues | he's gone</title>
+        <title>osuleagues | 410</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet" type="text/css">
 
         <style>
-            html, body {
-                height: 100%;
-            }
-
             body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                color: #B0BEC5;
-                display: table;
-                font-weight: 100;
+                background: #180052;
+                color: #fafafa;
                 font-family: 'Lato';
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 72px;
-                margin-bottom: 40px;
+                margin: 25px 0 0 50px;
             }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">He's gone, out of my life...</div>
-                <h2>{{ $exception->getMessage() }}</h2>
+                <h1>Something happened</h1>
+                <h2>Something happened</h2>
+                <br>
+                <p>Actually, error 410 happened.</p>
+                @if ($exception->getMessage())
+                    <p>For reference, the elders of the internet said this: {{ $exception->getMessage() }}</p>
+                @endif
             </div>
         </div>
     </body>
