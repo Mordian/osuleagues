@@ -76,7 +76,7 @@
 					</tr>
 					<?php $rank = 1 ?>
 					@foreach ($users as $user)
-						<tr class="@if ($user->canonical_username == $requestedUser) hover @endif" id="{{ $user->canonical_username }}">
+						<tr class="@if ($user->canonical_username == $requestedUser) hover @endif">
 							<td>{{ $rank }}</td>
 							<td>
 								<img class="flag" src="/assets/flags/{{ strtolower($user->country) }}.png" alt="{{ $user->country }}">
