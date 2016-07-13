@@ -51,7 +51,7 @@ class LeagueController extends Controller
             ->where('mode', $mode)
             ->whereIn('user_id', $user_ids)
             ->orderBy('pp', 'desc')
-            ->groupBy('beatmap_id')
+            ->groupBy('pp')
             ->take(20)
             ->get();
 
